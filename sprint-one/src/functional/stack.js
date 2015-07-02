@@ -3,6 +3,7 @@ var Stack = function(){
 
   // Use an object with numeric keys to store values
   var storage = {};
+
   var length = 0;
 
   // Implement the methods below
@@ -11,7 +12,7 @@ var Stack = function(){
   };
 
   someInstance.pop = function(){
-    if (length > 0) {
+    if (length) {
       var value = storage[--length];
       delete storage[length];
       return value;

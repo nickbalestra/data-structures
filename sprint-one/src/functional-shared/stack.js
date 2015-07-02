@@ -3,28 +3,29 @@ var Stack = function() {
   // but try not not reference your old code in writing the new style.
   var someInstance = {};
 
-  someInstance.storage = {};
-  someInstance.length = 0;
+  someInstance._storage = {};
+  someInstance._length = 0;
   _.extend(someInstance, stackMethods);
 
   return someInstance;
 };
 
-// To check why Stack.stackMethods brake the tests
-var stackMethods = {
-  size: function(){
-          return this.length;
-        },
-  pop:  function(){
-          if (this.length > 0) {
-            var value = this.storage[--this.length];
-            delete this.storage[this.length];
-            return value;
-          }
-        },
-  push: function(value){
-          this.storage[this.length++] = value;
-        }
+var stackMethods = {};
+
+stackMethods.size = function(){
+  return this._length;
 };
+
+stackMethods.pop = function(){
+  if (this.size()) {
+    var value = this._storage[--this._length];
+    delete this._storage[this._length];
+    return value;
+  }
+};
+
+stackMethods.push = function(value){
+  this._storage[this._length++] = value;
+}
 
 

@@ -5,8 +5,8 @@ var Queue = function(){
   var storage = {};
   var front = 0;
   var back = 0;
-  // Implement the methods below
 
+  // Implement the methods below
   someInstance.enqueue = function(value){
     storage[back++] = value;
   };
