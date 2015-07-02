@@ -1,0 +1,31 @@
+<!doctype html>
+<meta charset="utf8">
+<html>
+  <head>
+    <script src="../lib/underscore/underscore.js"></script>
+    <script src="../lib/jquery/jquery.js"></script>
+    <script src="../sprint-one/src/pseudoclassical/queue.js"></script>
+    <script src="../sprint-one/src/pseudoclassical/stack.js"></script>
+  </head>
+  <body>
+  <h1>Pseudoclassical</h1>
+  <ul></ul>
+  <script>
+
+  function test(num, dataStructureConstructor, type){
+    var start = window.performance.now();
+    _.each(_.range(num), function pseudoclassical(){
+      dataStructureConstructor();
+    })
+    var end = window.performance.now();
+    var elapsed = end - start;
+    console.log("Created " + num + " Pseudoclassical " + type + "s in " + elapsed + " milliseconds");
+    $('ul').append("<li>Created " + num + " Pseudoclassical " + type + "s in " + elapsed + " milliseconds </li>");
+  }
+
+  test(1000000, Queue, "queue");
+  test(1000000, Stack, "stack");
+
+  </script>
+  </body>
+</html>

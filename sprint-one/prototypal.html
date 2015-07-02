@@ -1,0 +1,32 @@
+<!doctype html>
+<meta charset="utf8">
+<html>
+  <head>
+
+    <script src="../lib/underscore/underscore.js"></script>
+    <script src="../lib/jquery/jquery.js"></script>
+    <script src="../sprint-one/src/prototypal/queue.js"></script>
+    <script src="../sprint-one/src/prototypal/stack.js"></script>
+  </head>
+  <body>
+  <h1>Prototypal</h1>
+  <ul></ul>
+  <script>
+
+  function test(num, dataStructureConstructor, type){
+      var start = window.performance.now();
+      _.each(_.range(num), function prototypal(){
+        dataStructureConstructor();
+      })
+      var end = window.performance.now();
+      var elapsed = end - start;
+      console.log("Created " + num + " Prototypal " + type + "s in " + elapsed + " milliseconds");
+      $('ul').append("<li>Created " + num + " Prototypal " + type + "s in " + elapsed + " milliseconds </li>");
+    }
+
+  test(1000000, Queue, "queue");
+  test(1000000, Stack, "stack");
+
+  </script>
+  </body>
+</html>

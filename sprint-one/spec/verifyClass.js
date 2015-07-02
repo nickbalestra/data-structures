@@ -114,7 +114,8 @@ define(['../../lib/chai/chai.js', '../../lib/underscore/underscore.js'], functio
 
         var referencesThis = requireOption('referencesThis');
         it(might('reference the keyword this', referencesThis), function(){
-          assuming(referencesThis).expect(/^((?!\/\/).)*(this)/.test(constructor)).to.be.true;
+          // console.log(/^((?!\/\/).)*(this)/.test('this'));
+          assuming(referencesThis).expect(/((?!\/\/\s).)*(this)/.test(constructor)).to.be.true;
         });
 
         var referencesReturn = requireOption('referencesReturn');

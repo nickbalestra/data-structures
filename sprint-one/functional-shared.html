@@ -1,0 +1,32 @@
+<!doctype html>
+<meta charset="utf8">
+<html>
+  <head>
+
+    <script src="../lib/underscore/underscore.js"></script>
+    <script src="../lib/jquery/jquery.js"></script>
+    <script src="../sprint-one/src/functional-shared/queue.js"></script>
+    <script src="../sprint-one/src/functional-shared/stack.js"></script>
+  </head>
+  <body>
+  <h1>Functional-Shared</h1>
+  <ul></ul>
+  <script>
+
+  function test(num, dataStructureConstructor, type){
+          var start = window.performance.now();
+          _.each(_.range(num), function functionalShared(){
+            dataStructureConstructor();
+          })
+          var end = window.performance.now();
+          var elapsed = end - start;
+          console.log("Created " + num + " Functional-Shared " + type + "s in " + elapsed + " milliseconds");
+          $('ul').append("<li>Created " + num + " Functional-Shared " + type + "s in " + elapsed + " milliseconds </li>");
+        }
+
+  test(1000000, Queue, "queue");
+  test(1000000, Stack, "stack");
+
+  </script>
+  </body>
+</html>
