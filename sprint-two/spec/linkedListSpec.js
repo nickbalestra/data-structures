@@ -36,6 +36,11 @@ describe('linkedList', function() {
     expect(linkedList.removeHead()).to.equal(4);
   });
 
+  it("should return true after new nodes are added", function(){
+    var returned = linkedList.addToTail(4);
+    expect(returned).to.equal(true);
+  });
+
   it("should contain a value that was added", function(){
     linkedList.addToTail(4);
     linkedList.addToTail(5);
