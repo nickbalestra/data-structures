@@ -18,6 +18,12 @@ describe('set', function() {
     expect(set.contains('Susan Sarandon')).to.equal(true);
   });
 
+  it('Once a value is added to a set, adding it a second time should not increase the size of the set', function(){
+    set.add("Susan Sarandon");
+    set.add("Susan Sarandon");
+    expect(set._storage.length).to.equal(1);
+  });
+
   it('should remove values from a set', function(){
     set.add("Mel Gibson");
     set.remove("Mel Gibson");
