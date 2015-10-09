@@ -1,50 +1,54 @@
 var Graph = function(){
-
   this.nodes = {};
-
 };
 
-Graph.prototype.addNode = function(node){
+
+// Add a node to the graph, passing in the node's value.
+// Time complexity: O(1)
+Graph.prototype.addNode = function(node) {
   this.nodes[node] = {};
 };
 
-Graph.prototype.contains = function(node){
-  if(this.nodes[node]) {
-    return true;
-  }
-  return false;
+// Return a boolean value indicating if the value passed 
+// to contains is represented in the graph.
+// Time complexity: O(1)
+Graph.prototype.contains = function(node) {
+  return this.nodes[node] ? true : false;
 };
 
-Graph.prototype.removeNode = function(node){
+// Removes a node from the graph.
+// Time complexity: O(1)
+Graph.prototype.removeNode = function(node) {
   delete this.nodes[node];
 };
 
-Graph.prototype.hasEdge = function(fromNode, toNode){
-  if (this.nodes[fromNode][toNode]) {
-    return true;
-  }
-  return false;
+// Returns a boolean indicating whether two specified nodes are connected.
+// Pass in the values contained in each of the two nodes.
+// Time complexity: O(1)
+Graph.prototype.hasEdge = function(fromNode, toNode) {
+  return this.nodes[fromNode][toNode] ? true : false;
 };
 
-Graph.prototype.addEdge = function(fromNode, toNode){
+// Connects two nodes in a graph by adding an edge between them.
+// Time complexity: O(1)
+Graph.prototype.addEdge = function(fromNode, toNode) {
   this.nodes[fromNode][toNode] = true;
   this.nodes[toNode][fromNode] = true;
 };
 
-Graph.prototype.removeEdge = function(fromNode, toNode){
-  this.nodes[fromNode][toNode] = false;
-  this.nodes[toNode][fromNode] = false;
+// Remove an edge between any two specified (by value) nodes.
+// Time complexity: O(1)
+Graph.prototype.removeEdge = function(fromNode, toNode) {
+  delete this.nodes[fromNode][toNode];
+  delete this.nodes[toNode][fromNode];
 };
 
-Graph.prototype.forEachNode = function(cb){
-  for (var key in this.nodes){
-    cb(key)
+// Pass in a callback which will be executed on each node of the graph.
+// Time complexity: O(n)
+Graph.prototype.forEachNode = function(cb) {
+  for (var key in this.nodes) {
+    if (this.nodes.hasOwnProperty(key)) {
+      cb(key);
+    }
   }
 };
-
-/*
- * Complexity: What is the time complexity of the above functions?
- */
-
-
-
