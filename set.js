@@ -6,26 +6,22 @@ var Set = function(){
 
 var setPrototype = {};
 
-setPrototype.add = function(item){
+// Time complexity: O([].indexOf), O(n) 
+setPrototype.add = function(item) {
   if (!this.contains(item)) {
-  this._storage.push(item);
+    this._storage.push(item);
   }
 };
 
-setPrototype.contains = function(item){
-  if (this._storage.indexOf(item) >= 0) {
-    return true;
-  }
-  return false;
+// Time complexity: O([].indexOf), O(n) 
+setPrototype.contains = function(item) {
+  return this._storage.indexOf(item) >= 0;
 };
 
-setPrototype.remove = function(item){
+// Time complexity: O([].indexOf), O(n) 
+setPrototype.remove = function(item) {
   if (this.contains(item)) {
     var itemAt = this._storage.indexOf(item);
     this._storage.splice(itemAt, 1);
   }
 };
-
-/*
- * Complexity: What is the time complexity of the above functions?
- */
