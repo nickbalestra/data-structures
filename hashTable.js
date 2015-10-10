@@ -62,7 +62,7 @@ HashTable.prototype.remove = function(k){
   }
 
   var bucket = this._storage.get(i);
-  bucket.forEach(function(tuple, index){
+  bucket.forEach((tuple, index) => {
     if (tuple[0] === k) {
       bucket.splice(index, 1);
       this._count--;
@@ -70,7 +70,7 @@ HashTable.prototype.remove = function(k){
         this.resize(this._limit / 2);
       }
     }
-  }.bind(this));
+  });
 };
 
 // Time complexity: O(n)
@@ -80,11 +80,11 @@ HashTable.prototype.resize = function(limit){
   this._storage = LimitedArray(limit);
   this._count = 0;
 
-  oldStorage.each(function(bucket){
+  oldStorage.each(bucket => {
     if (bucket) {
-      bucket.forEach(function(tuple){
+      bucket.forEach(tuple => {
         this.insert(tuple[0], tuple[1]);
-      }.bind(this))
+      })
     }
-  }.bind(this))
+  })
 };
