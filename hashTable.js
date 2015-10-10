@@ -78,8 +78,6 @@ HashTable.prototype.resize = function(limit){
   this._storage = LimitedArray(limit);
   this._count = 0;
 
-  var context = this;
-
   oldStorage.each(function(bucket){
     if (bucket) {
       bucket.forEach(function(tuple){
