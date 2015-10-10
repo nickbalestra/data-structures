@@ -1,66 +1,60 @@
 var BinarySearchTree = function(value){
-  var newbsTree = Object.create(bsMethods);
-  newbsTree._value = value;
-  newbsTree._left = null;
-  newbsTree._right = null;
+  bst = Object.create(BinarySearchTree.prototype);
 
-  return newbsTree;
+  bst._value = value;
+  bst._left = null;
+  bst._right = null;
+
+  return bst;
 };
 
-var bsMethods = {};
-
-bsMethods.insert = function(value) {
-  if (value < this._value) {
-    if (this._left === null) {
-      this._left = BinarySearchTree(value);
-    } else {
-      this._left.insert(value);
-    }
-  } else {
-    if (this._right === null) {
+// Time complexity: O(log(n))
+BinarySearchTree.prototype.insert = function(value) {
+  if (value > this._value) {
+    if (!this._right) {
       this._right = BinarySearchTree(value);
+      return true;
     } else {
-      this._right.insert(value);
+      return this._right.insert(value);
     }
   }
-  return true;
+
+  if (value < this._value) {
+    if (!this._left) {
+      this._left = BinarySearchTree(value);
+      return true;
+    } else {
+      return this._left.insert(value);
+    }
+  }
 };
 
-bsMethods.contains = function(target) {
+// Time complexity: O(log(n))
+BinarySearchTree.prototype.contains = function(target) {
   if (this._value === target) {
     return true;
   }
 
-  if (this._left !== null) {
-    if (this._left.contains(target)) {
-      return true;
-    }
-  }
+  if (this._right && target > this._value) {
+    return this._right.contains(target);
+  } 
 
-  if (this._right !== null) {
-    if (this._right.contains(target)) {
-      return true;
-    }
+  if (this._left && target < this._value) {
+    return this._left.contains(target);
   }
-
+  
   return false;
-
 };
 
-bsMethods.depthFirstLog = function(callback) {
-  if (this._value !== null) {
-    callback(this._value);
+// Time complexity: O(n)
+BinarySearchTree.prototype.depthFirstLog = function(cb) {
+  if (this._value) {
+    cb(this._value);
   }
-  if (this._right !== null) {
-    this._right.depthFirstLog(callback);
+  if (this._right) {
+    this._right.depthFirstLog(cb);
   }
-  if (this._left !== null) {
-    this._left.depthFirstLog(callback);
+  if (this._left) {
+    this._left.depthFirstLog(cb);
   }
 };
-
-
-
-/*
- * Complexity: What is the time complexity of the above functions?
- */
