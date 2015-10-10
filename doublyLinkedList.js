@@ -1,4 +1,4 @@
-var LinkedList = function(){
+var DoublyLinkedList = function(){
   var list = {};
   list.head = null;
   list.tail = null;
@@ -8,6 +8,7 @@ var LinkedList = function(){
     var node = Node(value);
     this.head = this.head || node;
     if (this.tail) {
+      node.previous = this.tail;
       this.tail.next = node;
     }
     this.tail = node;
@@ -17,7 +18,14 @@ var LinkedList = function(){
   // Time complexity:  O(1)
   list.removeHead = function(){
     var head = this.head;
-    this.head = this.head.next;
+    if (head.next) {
+      this.head = head.next;  
+      this.head.previous = null;
+    } else {
+      this.head = null;
+    }
+    
+    
     return head.value;
   };
 
@@ -32,7 +40,6 @@ var LinkedList = function(){
     }
     return false;
   };
-  
   return list;
 };
 
@@ -41,6 +48,7 @@ var Node = function(value){
 
   node.value = value;
   node.next = null;
+  node.previous = null;
 
   return node;
 };
