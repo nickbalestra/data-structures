@@ -4,6 +4,7 @@ var HashTable = function() {
   this._count = 0;
 };
 
+// Time complexity: O(1)
 HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
   var bucket = this._storage.get(i);
@@ -31,7 +32,7 @@ HashTable.prototype.insert = function(k, v){
   return true;
 };
 
-
+// Time complexity: O(1)
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
 
@@ -50,7 +51,8 @@ HashTable.prototype.retrieve = function(k){
   return found;
 };
 
-
+// Time complexity: O(1)
+// Dynamic resizing doesn't affect amortized complexity of the hash table's operations
 HashTable.prototype.remove = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
   var holder = this._count
@@ -71,7 +73,7 @@ HashTable.prototype.remove = function(k){
   }.bind(this));
 };
 
-
+// Time complexity: O(n)
 HashTable.prototype.resize = function(limit){
   var oldStorage = this._storage;
   this._limit = limit;

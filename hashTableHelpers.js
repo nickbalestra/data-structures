@@ -1,28 +1,28 @@
-/*
- ********** NOTE: **********
- * Do not edit this code unless you see a bug!
- */
-
-
 // This class represents an array with limited functionality and a maximum size.
-// It will ensure that you don't accidentally try to use up too much space.
+// It will ensure that we don't accidentally try to use up too much space.
 //
 // Usage:
-//   limitedArray.set(3, 'hi');
-//   limitedArray.get(3); // returns 'hi'
+// limitedArray.set(3, 'hi');
+// limitedArray.get(3); // returns 'hi'
 
 var LimitedArray = function(limit){
   var storage = [];
 
   var limitedArray = {};
+
+  // Time complexity: O(1)
   limitedArray.get = function(index){
     checkLimit(index);
     return storage[index];
   };
+
+  // Time complexity: O(1)
   limitedArray.set = function(index, value){
     checkLimit(index);
     storage[index] = value;
   };
+  
+  // Time complexity: O(n)
   limitedArray.each = function(callback){
     for(var i = 0; i < storage.length; i++){
       callback(storage[i], i, storage);
@@ -37,9 +37,10 @@ var LimitedArray = function(limit){
   return limitedArray;
 };
 
-// This is a "hashing function". You don't need to worry about it, just use it
-// to turn any string into an integer that is well-distributed between the
+// This is the "hashing function".
+// It turns any string into an integer that is well-distributed between the
 // numbers 0 and `max`
+// Time complexity: O(1)
 var getIndexBelowMaxForKey = function(str, max){
   var hash = 0;
   for (var i = 0; i < str.length; i++) {
@@ -49,7 +50,3 @@ var getIndexBelowMaxForKey = function(str, max){
   }
   return hash % max;
 };
-
-/*
- * Complexity: What is the time complexity of the above functions?
- */
