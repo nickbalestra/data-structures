@@ -9,6 +9,7 @@ This is a project I completed as a student at Hack Reactor. This project was wor
 - Stack
 - Set
 - LinkedList
+- DoublyLinkedList
 - Tree
 - BinarySearchTree
 - Graph
