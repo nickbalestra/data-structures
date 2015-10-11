@@ -44,3 +44,11 @@ treeMethods.removeFromParent = function(target){
 
   return branched;
 };
+
+// Time complexity: O(n)
+treeMethods.traverse = function(cb){
+ cb(this.value);
+  for (var i = 0; i < this.children.length; i++) {
+    this.children[i].traverse(cb);
+  } 
+}

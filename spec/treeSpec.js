@@ -62,7 +62,7 @@ describe('tree', function() {
     expect(tree.parent).to.equal(null);
   });
 
-  it('If tree is root parent should be null', function() {
+  it('It should be able to disassociates the tree with its parent when invoking "removeFromParent"', function() {
     tree.addChild(5);
     tree.addChild(6);
     tree.children[0].addChild(7);
@@ -72,6 +72,21 @@ describe('tree', function() {
     expect(branchedTree.value).to.equal(7);
     expect(tree.children.length).to.equal(2);
     expect(tree.children[0].children.length).to.equal(1);
+  });
+
+    it('It should accept a callback and execute it on every value contained in the tree', function() {
+    tree.addChild(1);
+    tree.addChild(2);
+    tree.children[0].addChild(3);
+    tree.children[0].addChild(4);
+    var results = [];
+    var print = function(item){results.push(item)};
+    tree.traverse(print);
+    expect(results.length).to.equal(5);
+    expect(results[1]).to.equal(1);
+    expect(results[2]).to.equal(3);
+    expect(results[3]).to.equal(4);
+    expect(results[4]).to.equal(2);
   });
 
 });
