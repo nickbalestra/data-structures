@@ -65,8 +65,19 @@ BinarySearchTree.prototype.depthFirstLog = function(cb) {
       container.push(element._left);
     }
     cb(element._value);
-  }
+  }    
 };
+
+// Recursive DFS Implementation
+// BinarySearchTree.prototype.depthFirstLog = function(cb) {
+//   cb(this._value);
+//   if (this._left) {
+//     this._left.depthFirstLog(cb);
+//   }
+//   if (this._right) {
+//     this._right.depthFirstLog(cb);
+//   }
+// };
 
 // Time complexity: O(n)
 BinarySearchTree.prototype.breadthFirstLog = function(cb) {
