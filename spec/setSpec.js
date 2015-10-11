@@ -18,10 +18,31 @@ describe('set', function() {
     expect(set.contains('Susan Sarandon')).to.equal(true);
   });
 
+  it('should add numbers to a set', function(){
+    set.add(10);
+    set.add(100);
+    expect(set.contains(100)).to.equal(true);
+    expect(set.contains(10)).to.equal(true);
+  });
+
+  it('should handle input objects of any type', function(){
+    set.add(10);
+    set.add('ten');
+    set.add([10]);
+    set.add({ten: 10});
+    var func = function(x){console.log(x)};
+    set.add(func);
+    expect(set.contains(10)).to.equal(true);
+    expect(set.contains('ten')).to.equal(true);
+    expect(set.contains([10])).to.equal(true);
+    expect(set.contains({ten: 10})).to.equal(true);
+    expect(set.contains(func)).to.equal(true);
+  });
+
   it('Once a value is added to a set, adding it a second time should not increase the size of the set', function(){
     set.add("Susan Sarandon");
     set.add("Susan Sarandon");
-    expect(set._storage.length).to.equal(1);
+    expect(set._length).to.equal(1);
   });
 
   it('should remove values from a set', function(){
