@@ -1,7 +1,7 @@
 Data-Structures
 ==============
 
-This is a project I completed as a student at Hack Reactor. This project was worked on with a pair. The project contains various type data-structures implemented in javascript relying on different instantiation patterns.
+This is a project I worked on as a student at Hack Reactor. This project was worked on with a pair. The project implements in javascript the following data-structures.
 
 ## Data structures:
 
