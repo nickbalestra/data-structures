@@ -17,7 +17,7 @@ setPrototype.add = function(item) {
 
 // Time complexity: O([].indexOf), O(n) 
 setPrototype.contains = function(item) {
-  return this._storage[item] !== undefined;
+  return this._storage.hasOwnProperty(item);
 };
 
 // Time complexity: O([].indexOf), O(n) 
