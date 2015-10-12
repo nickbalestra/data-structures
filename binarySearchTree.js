@@ -60,6 +60,7 @@ BinarySearchTree.prototype.depthFirstLog = function(cb) {
 
     if (element._right) {
       container.push(element._right);
+
     }
     if (element._left) {
       container.push(element._left);
@@ -81,7 +82,7 @@ BinarySearchTree.prototype.depthFirstLog = function(cb) {
 
 // Time complexity: O(n)
 BinarySearchTree.prototype.breadthFirstLog = function(cb) {
-  // / Using a queue to walk the tree in breadth first way 
+  // Using a queue to walk the tree in breadth first way 
   // Could be done with arrays and native methods in js, but as we have the
   // class defined in `stacks-queues/src/prototypal/queue.js`, let's use it
   var container = Queue(); 
@@ -90,6 +91,7 @@ BinarySearchTree.prototype.breadthFirstLog = function(cb) {
   container.enqueue(this);
   while (container.size() > 0) {  
     element = container.dequeue();
+
     if (element._left) {
       container.enqueue(element._left);
     }
@@ -98,4 +100,44 @@ BinarySearchTree.prototype.breadthFirstLog = function(cb) {
     }
     cb(element._value);
   }
+};
+
+// tree balancing stuff here
+BinarySearchTree.prototype.findHeight = function() {
+  if (!this._left && !this._right) {
+    return -1;
+  }
+
+  var lefth = 0;
+  var righth = 0;
+
+  if (this._left) { 
+    lefth = this._left.findHeight() 
+  };
+  
+  if (this._right) { 
+    righth = this._right.findHeight()
+  };
+
+  return (lefth > righth) ? lefth + 1 : righth +1;
+};
+
+// balanceFactor = height(left subtree) - height(right subtree)
+BinarySearchTree.prototype.balanceFactor = function() {
+  if (!this._left && !this._right) {
+    return -1;
+  }
+
+  var lefth = 0;
+  var righth = 0;
+
+  if (this._left) { 
+    lefth = this._left.findHeight() 
+  };
+  
+  if (this._right) { 
+    righth = this._right.findHeight()
+  };
+
+  return (lefth + 1) - (righth + 1);
 };
