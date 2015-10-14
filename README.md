@@ -15,6 +15,8 @@ This is a project I worked on as a student at Hack Reactor. This project was wor
 - Graph
 - HashTable
 - PrefixTree (Trie)
+- bitArray
+- bloomFilter
 
 **Some code may be written in ES6 and may require to be transpiled in order to be tested**.
 
