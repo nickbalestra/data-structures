@@ -16,7 +16,6 @@ describe('binarySearchTree', function() {
     binarySearchTree.insert(7);
     binarySearchTree.insert(3);
     binarySearchTree.insert(6);
-    console.log(binarySearchTree);
     expect(binarySearchTree._left._right._value).to.equal(3);
     expect(binarySearchTree._right._left._value).to.equal(6);
   });

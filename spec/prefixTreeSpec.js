@@ -31,7 +31,6 @@ describe('PrefixTree', function() {
     prefixTree.insert("hellooo");
     prefixTree.insert("hellloo");
     var suggestions  = prefixTree.getSuggestions("4355", 3);
-    console.log(suggestions);
     expect(suggestions.indexOf("hello") >= 0).to.equal(true);
     expect(suggestions.indexOf("hellloo") >= 0).to.equal(true);
     expect(suggestions.indexOf("hellooo") >= 0).to.equal(true);
