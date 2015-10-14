@@ -4,29 +4,33 @@ var BinarySearchTree = function(value){
   bst._value = value;
   bst._left = null;
   bst._right = null;
+  bst._root = arguments[1] || false;
 
   return bst;
 };
 
 // Time complexity: O(log(n))
-BinarySearchTree.prototype.insert = function(value) {
-  if (value < this._value) {
-    if (!this._left) {
-      this._left = BinarySearchTree(value);
-      return true;
-    } else {
-      return this._left.insert(value);
+BinarySearchTree.prototype.insert = function(value) {  
+    if (value < this._value) {
+      if (!this._left) {
+        this._left = BinarySearchTree(value);
+      } else {
+        this._left.insert(value);
+      }
     }
-  }
 
-  if (value > this._value) {
-    if (!this._right) {
-      this._right = BinarySearchTree(value);
-      return true;
-    } else {
-      return this._right.insert(value);
+    if (value > this._value) {
+      if (!this._right) {
+        this._right = BinarySearchTree(value);
+      } else {
+        this._right.insert(value);
+      }
     }
-  }
+    
+    if (this._root){
+      this.rebalance();
+    }
+    return true;
 };
 
 // Time complexity: O(log(n))
@@ -103,6 +107,7 @@ BinarySearchTree.prototype.breadthFirstLog = function(cb) {
 };
 
 // tree balancing stuff here
+// Time complexity: O(n)
 BinarySearchTree.prototype.findHeight = function() {
   if (!this._left && !this._right) {
     return -1;
@@ -123,6 +128,7 @@ BinarySearchTree.prototype.findHeight = function() {
 };
 
 // balanceFactor = height(left subtree) - height(right subtree)
+// Time complexity: O(n)
 BinarySearchTree.prototype.balanceFactor = function() {
   if (!this._left && !this._right) {
     return -1;
@@ -141,3 +147,44 @@ BinarySearchTree.prototype.balanceFactor = function() {
 
   return (lefth + 1) - (righth + 1);
 };
+
+// Time complexity: O(1)
+BinarySearchTree.prototype.rotateRight = function() {
+  var newRight = BinarySearchTree(this._value);
+  newRight._right = this._right;
+  newRight._left = this._left._right;
+  this._right = newRight;
+
+  this._value = this._left._value;
+  if (this._left._root) {
+    this._root = true;
+    this._left._root = false;
+  }
+  this._left = this._left._left;
+};
+
+// Time complexity: O(1)
+BinarySearchTree.prototype.rotateLeft = function() {
+  var newLeft = BinarySearchTree(this._value);
+  newLeft._left = this._left;
+  newLeft._right = this._right._left;
+  this._left = newLeft;
+
+  this._value = this._right._value;
+  if (this._right._root) {
+    this._root = true;
+    this._right._root = false;
+  }
+  this._right = this._right._right;
+};
+
+// Time complexity: O(n)
+BinarySearchTree.prototype.rebalance = function() {
+  if (this.balanceFactor() > 1) {
+    this.rotateRight();
+  }
+  if (this.balanceFactor() < -1) {
+    this.rotateLeft();
+  }
+}
+
